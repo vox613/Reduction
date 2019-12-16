@@ -29,7 +29,7 @@ public class GoogleDriveUtils {
     private static final JsonFactory JSON_FACTORY = JacksonFactory.getDefaultInstance();
     // Directory to store user credentials for this application.
 //    private static final File CREDENTIALS_FOLDER = new File(".\\src\\main\\resources", "credentials");
-    private static final File CREDENTIALS_FOLDER = new File(".\\src\\main\\resources", "credentials");
+    private static final File CREDENTIALS_FOLDER = new File(".", "credentials");
 
     private static final String CLIENT_SECRET_FILE_NAME = "client_secret.json";
     private static final List<String> SCOPES = Collections.singletonList(DriveScopes.DRIVE);
@@ -52,11 +52,12 @@ public class GoogleDriveUtils {
 
     private static Credential getCredentials() throws IOException {
         //File clientSecretFilePath = new File(CREDENTIALS_FOLDER, CLIENT_SECRET_FILE_NAME);
-        File clientSecretFilePath = new File(CREDENTIALS_FOLDER, CLIENT_SECRET_FILE_NAME);
+        File clientSecretFilePath = new File(CLIENT_SECRET_FILE_NAME);
 //        if (!clientSecretFilePath.exists()) {
 //            throw new FileNotFoundException("Please copy " + CLIENT_SECRET_FILE_NAME //
 //                    + " to folder: " + CREDENTIALS_FOLDER.getAbsolutePath());
 //        }
+
         InputStream in = new FileInputStream(clientSecretFilePath);
         GoogleClientSecrets clientSecrets = GoogleClientSecrets.load(JSON_FACTORY, new InputStreamReader(in));
         // Build flow and trigger user authorization request.
